@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="F1q-g4-iHq">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -14,12 +14,12 @@
         <scene sceneID="pPt-qT-W9j">
             <objects>
                 <tableViewController id="oXw-gq-Tb3" customClass="MainTableViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="eYo-S3-Csg">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="104" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="eYo-S3-Csg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="ToDoCell" rowHeight="104" id="G7m-gN-bOp">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="ToDoCell" rowHeight="104" id="G7m-gN-bOp" customClass="ToDoCell" customModule="ToDoList" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="104"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="G7m-gN-bOp" id="Y6R-Xa-dLy">
@@ -54,6 +54,11 @@
                                         <constraint firstItem="FXj-sY-LiM" firstAttribute="leading" secondItem="Y6R-Xa-dLy" secondAttribute="leading" constant="8" id="gIM-7I-2Gp"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="dateLabel" destination="P5y-Rq-GEB" id="Qis-gv-pGg"/>
+                                    <outlet property="infoLabel" destination="FXj-sY-LiM" id="5pY-bx-Idk"/>
+                                    <outlet property="titleLabel" destination="I3H-0G-7e0" id="vBV-UL-mOW"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -62,49 +67,56 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="tqQ-QP-RTw">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Jxf-Qz-sDR"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="zCs-FY-Wgs">
+                            <connections>
+                                <action selector="addPressed:" destination="oXw-gq-Tb3" id="LUY-rP-oy5"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="G6p-Pn-Ylf" kind="presentation" identifier="addToDoSegue" id="7DK-Wn-GgX"/>
+                        <segue destination="lIo-vL-zoF" kind="presentation" identifier="AddToDoSegue" id="7DK-Wn-GgX"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bgo-tY-fdj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1052" y="139.880059970015"/>
         </scene>
-        <!--View Controller-->
+        <!--Add View Controller-->
         <scene sceneID="165-9m-qUR">
             <objects>
-                <viewController id="G6p-Pn-Ylf" sceneMemberID="viewController">
+                <viewController id="G6p-Pn-Ylf" customClass="AddViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NrQ-R0-uNG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" background="Additional Information" translatesAutoresizingMaskIntoConstraints="NO" id="Y9Y-n7-P0b">
-                                <rect key="frame" x="8" y="28" width="359" height="30"/>
+                                <rect key="frame" x="8" y="72" width="359" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Additional Information" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O92-zv-8PS">
-                                <rect key="frame" x="8" y="66" width="359" height="30"/>
+                                <rect key="frame" x="8" y="110" width="359" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="cBT-Kj-g3e">
-                                <rect key="frame" x="8" y="196" width="359" height="216"/>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="cBT-Kj-g3e">
+                                <rect key="frame" x="8" y="240" width="359" height="216"/>
                                 <date key="date" timeIntervalSinceReferenceDate="558495489.750332">
                                     <!--2018-09-13 01:38:09 +0000-->
                                 </date>
                             </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5dG-aU-wbd">
-                                <rect key="frame" x="32" y="428" width="311" height="60"/>
+                                <rect key="frame" x="32" y="472" width="311" height="60"/>
                                 <color key="backgroundColor" red="0.0" green="0.3411764706" blue="0.60392156860000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                 <state key="normal" title="Add Item">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="addItemPressed:" destination="G6p-Pn-Ylf" eventType="touchUpInside" id="JTW-VL-a9K"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -124,10 +136,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Td-nM-nVI"/>
                     </view>
+                    <navigationItem key="navigationItem" id="rFF-56-Q8a"/>
+                    <connections>
+                        <outlet property="addInfoLabel" destination="O92-zv-8PS" id="4GZ-j1-UAI"/>
+                        <outlet property="addTitleLabel" destination="Y9Y-n7-P0b" id="bOd-Qb-vGt"/>
+                        <outlet property="toDoDatePicker" destination="cBT-Kj-g3e" id="XdW-Tr-ub8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n8f-zK-Nlh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1958" y="140"/>
+            <point key="canvasLocation" x="2896.8000000000002" y="139.880059970015"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uCa-c5-JG2">
@@ -146,6 +164,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jOJ-s5-zhr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="112.8" y="140.77961019490255"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ZGm-pA-TDz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lIo-vL-zoF" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JGv-nb-oG6">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="G6p-Pn-Ylf" kind="relationship" relationship="rootViewController" id="TRE-OR-rDy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qml-Vf-360" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1957.5999999999999" y="139.880059970015"/>
         </scene>
     </scenes>
     <resources>
