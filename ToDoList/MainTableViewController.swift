@@ -26,9 +26,6 @@ class MainTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchAllItems()
-//        tableView.rowHeight = UITableViewAutomaticDimension
-//        tableView.estimatedRowHeight = 104
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,15 +38,40 @@ class MainTableViewController: UITableViewController {
         cell.titleLabel.text = items[indexPath.row].title
         cell.infoLabel.text = items[indexPath.row].info
         cell.dateLabel.text = items[indexPath.row].date
-        cell.accessoryType = cell.isSelected ? .checkmark : .none
+        cell.accessoryType = .none
         return cell
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
+    
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let cell = tableView.cellForRow(at: indexPath)
+//        print("blah")
+//        if cell?.accessoryType == .none {
+//            print("print")
+//            cell?.accessoryType = .checkmark
+//        }
+//        else {
+//            print("hi")
+//            cell?.accessoryType = .none
+//        }
+//    }
+    
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) {
+            if cell.accessoryType == .none {
+                cell.accessoryType = .checkmark
+//                tableView.reloadData()
+                print("what")
+            }
+            else {
+                cell.accessoryType = .none
+                self.tableView.reloadData()
+                print("the")
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -68,6 +90,7 @@ class MainTableViewController: UITableViewController {
             print("\(error)")
         }
     }
+    
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         let item = items[indexPath.row]
