@@ -59,19 +59,35 @@ class MainTableViewController: UITableViewController {
 //        }
 //    }
     
-    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+//    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+//        if let cell = tableView.cellForRow(at: indexPath) {
+//            if cell.accessoryType == .none {
+//                cell.accessoryType = .checkmark
+////                tableView.reloadData()
+//                print("what")
+//            }
+//            else {
+//                cell.accessoryType = .none
+////                self.tableView.reloadData()
+//                print("the")
+//            }
+//        }
+//    }
+    
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         if let cell = tableView.cellForRow(at: indexPath) {
             if cell.accessoryType == .none {
                 cell.accessoryType = .checkmark
-//                tableView.reloadData()
+                //                tableView.reloadData()
                 print("what")
             }
             else {
                 cell.accessoryType = .none
-                self.tableView.reloadData()
+                //                self.tableView.reloadData()
                 print("the")
             }
         }
+        return indexPath
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
